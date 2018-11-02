@@ -1,4 +1,4 @@
-package chapter1_fundamentals;
+package com.github.jerring.algorithms.chapter1_fundamentals;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

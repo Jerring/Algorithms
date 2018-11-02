@@ -1,4 +1,4 @@
-package chapter1_fundamentals;
+package com.github.jerring.algorithms.chapter1_fundamentals;
 
 // 带权路径压缩
 //public class UnionFind {

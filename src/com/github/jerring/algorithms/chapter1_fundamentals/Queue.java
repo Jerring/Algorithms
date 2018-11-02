@@ -1,16 +1,17 @@
-package chapter1_fundamentals;
+package com.github.jerring.algorithms.chapter1_fundamentals;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * Bag 链表的实现
- * Bag 是一种不支持删除元素的集合数据类型，可以用来收集和遍历元素
+ * Queue 链表的实现
+ * Queue 是一种基于 FIFO 策略的集合类型
  * @param <Item>
  */
-public class Bag<Item> implements Iterable<Item> {
+public class Queue<Item> implements Iterable<Item> {
 
     private Node<Item> first;
+    private Node<Item> last;
     private int size;
 
     private static class Node<Item> {
@@ -18,21 +19,45 @@ public class Bag<Item> implements Iterable<Item> {
         private Node<Item> next;
     }
 
-    public Bag() {
+    public Queue() {
         first = null;
+        last = null;
         size = 0;
     }
 
-    public void add(Item item) {
-        Node<Item> oldFirst = first;
-        first = new Node<>();
-        first.item = item;
-        first.next = oldFirst;
+    public void enqueue(Item item) {
+        // 新建结点
+        Node<Item> oldLast = last;
+        last = new Node<>();
+        last.item = item;
+        last.next = null;
+        // 根据队列是否为空，选择入队的策略
+        if (isEmpty()) {
+            first = last;
+        } else {
+            oldLast.next = last;
+        }
+        // 更新队列元素数量
         ++size;
     }
 
+    public Item dequeue() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("Queue underflow");
+        }
+        Item item = first.item;
+        first = first.next;
+        // 若此时队列为空，尾结点置空
+        if (isEmpty()) {
+            last = null;
+        }
+        // 更新队列元素数量
+        --size;
+        return item;
+    }
+
     public boolean isEmpty() {
-        return first == null;   // 或 return size == 0;
+        return first == null;
     }
 
     public int size() {
