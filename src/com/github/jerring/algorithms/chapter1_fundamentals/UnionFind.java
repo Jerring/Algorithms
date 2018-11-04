@@ -89,7 +89,7 @@ public class UnionFind {
     }
 
     /**
-     * 经过一次 find 操作，该路径上所有结点的父节点变为根结点
+     * 经过一次 find 操作，该路径上所有结点的父结点变为根结点
      * @param x
      * @return 结点 x 所在树的根结点
      */
