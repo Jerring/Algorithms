@@ -4,9 +4,9 @@ package com.github.jerring.algorithms.chapter2_sorting;
  * 插入排序：将待排序元素插入到已排序序列，从而完成排序
  * 稳定，运用 O(1) 额外空间
  */
-public class Insection {
+public class Insertion {
 
-    private Insection() {
+    private Insertion() {
     }
 
     public static void sort(Comparable[] a) {
