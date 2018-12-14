@@ -1,5 +1,7 @@
 package com.github.jerring.algorithms.chapter2_sorting;
 
+import java.util.ArrayDeque;
+
 /**
  * 快速排序：将数组分为两个子数组，将两部分独立地排序
  * 不稳定，运用 O(lgn) 额外空间（主要是递归时栈的空间开销）
@@ -12,6 +14,7 @@ public class Quick {
         sort(a, 0, a.length - 1);
     }
 
+    // 递归实现
     private static void sort(Comparable[] a, int lo, int hi) {
         if (hi <= lo) {
             return;
@@ -19,6 +22,33 @@ public class Quick {
         int j = partition(a, lo, hi);
         sort(a, lo, j - 1);
         sort(a, j + 1, hi);
+    }
+
+    // 非递归实现
+    public static void iterationSort(Comparable[] a) {
+        if (a == null || a.length <= 1) {
+            return;
+        }
+        // 栈顶的一对元素存放待划分区间的左端点和右端点的坐标
+        ArrayDeque<Integer> stack = new ArrayDeque<>();
+        // 初始化栈
+        stack.push(0);
+        stack.push(a.length - 1);
+        // 栈为空时划分完毕
+        while (!stack.isEmpty()) {
+            // 栈顶一对元素出栈
+            int hi = stack.pop();
+            int lo = stack.pop();
+            // 区间大于等于 2 才有需要调用 partition
+            if (lo < hi) {
+                int i = partition(a, lo, hi);
+                // 左半部分入站
+                stack.push(lo);
+                stack.push(i - 1);
+                stack.push(i + 1);
+                stack.push(hi);
+            }
+        }
     }
 
     /**
