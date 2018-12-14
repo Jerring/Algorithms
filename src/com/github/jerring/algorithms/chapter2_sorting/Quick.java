@@ -34,12 +34,12 @@ public class Quick {
         // 初始化栈
         stack.push(0);
         stack.push(a.length - 1);
-        // 栈为空时划分完毕
+        // 栈为空时排序完毕
         while (!stack.isEmpty()) {
             // 栈顶一对元素出栈
             int hi = stack.pop();
             int lo = stack.pop();
-            // 区间大于等于 2 才有需要调用 partition
+            // 区间大于等于 2 才需要调用 partition
             if (lo < hi) {
                 int i = partition(a, lo, hi);
                 // 左半部分入站
