@@ -42,9 +42,10 @@ public class Quick {
             // 区间大于等于 2 才需要调用 partition
             if (lo < hi) {
                 int i = partition(a, lo, hi);
-                // 左半部分入站
+                // 左半部分入栈
                 stack.push(lo);
                 stack.push(i - 1);
+                // 右半部分入栈
                 stack.push(i + 1);
                 stack.push(hi);
             }
